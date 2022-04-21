@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import ConnectWallet  from './components/ConnectWallet';
+import FileUpload  from './components/FileUpload';
 import './App.css';
+import './UI/FileUpload.css'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <div className="App">
+        <h1>Your Image</h1>
+      </div>
+      <div>
+
+      </div>
+      <ConnectWallet/>
+      <div className='FileUpload'>
+        <FileUpload/>
+      </div>
+    
     </div>
   );
 }
