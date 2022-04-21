@@ -1,0 +1,9 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "hardhat": "^2.9.2"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.3"
+  }
+}
