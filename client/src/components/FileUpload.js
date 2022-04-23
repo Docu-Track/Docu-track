@@ -1,33 +1,46 @@
-import React,{} from 'react';
+import React,{useState} from 'react';
+import {Buffer} from 'buffer';
+import ipfs from '../ipfs';
 
 
 function FileUpload() {
 
-  // const [filedata,getFiledata] = useState({buffer:'No file available'});
+  const [filedata,setFiledata] = useState({fileBuffer:'No file uploaded'});
 
-  const uploadFile = (event) =>{
+  const uploadFile = async (event) =>{
+    console.log(filedata);
     event.preventDefault();
-    console.log('File uploaded');
+    
+    //getting file from user
     const fileName = event.target.files[0];
-    // console.log('Type=>', typeof(fileName));
+    console.log(fileName);
     console.log('You uploaded => ',fileName.name);
-    // const fileReader = new window.FileReader();
-    // let fileReadCheck = false;
-    // const fileReadObj = fileReader.readAsArrayBuffer(fileName);
-    // console.log(fileReadObj);
-    // console.log(typeof(fileName)); 
-    // fileReader.onloadend = () =>{
-    //   if (fileReadCheck) {
-    //     console.log('fileRead check in progress...');
-    //     // console.log(fileReadObj);
-    //   }
-      // getFiledata({buffer: Buffer(fileReader)})
-    // }
+    const fileReader = new window.FileReader();
+    //reading filecontent as buffer
+    fileReader.readAsArrayBuffer(fileName);
+    console.log(fileReader);
+    
+    fileReader.onloadend = () =>{
+      console.log('fileRead check in progress...');
+      // console.log(Buffer(fileReader.result));
+      setFiledata({fileBuffer: Buffer(fileReader.result)});
+      // console.log('buffer is',Buffer(fileReader.result));
+    
+    }
+    
   }
-
+  
   const fileSubmit = (event) =>{
     event.preventDefault();
     console.log('File submitted');
+    console.log('filedata is',filedata.fileBuffer);
+
+    // console.log('Your data is of type=>',typeof(filedata.fileBuffer));
+    ipfs.add(filedata.fileBuffer, (err,file)=>{
+      if(err){console.log(err);}
+      console.log(file);
+    })
+
   }
   
   return (
@@ -35,8 +48,8 @@ function FileUpload() {
     
       <form onSubmit={fileSubmit}>
         <input type="file" onChange={uploadFile}></input> {/*onChange */}
-        
-        <input type='submit' onSubmit={fileSubmit}></input> {/*onSubmit */}
+        {/* {filedata.fileBuffer} */}
+        <input type='submit' ></input> {/*onSubmit */}
       </form>
         
         
