@@ -11,16 +11,20 @@ const main = async () => {
      // Mint for user 1
     console.log("Mint for User 1");
     let user1
-    user1 = await DocuTrack.docuMint(randomUser1, "https://game.example/item-id-8u5h2m.json");
+    user1 = await DocuTrack.docuMint(owner.address, "https://game.example/item-id-8u5h2m.json");
     await user1.wait();
-    console.log(user1)
+    // console.log(user1)
 
-    //Test
+    // //Test
     console.log("");
-    console.log("Test");
-    let drop1
-    drop1 = await DocuTrack.drop();
-    await drop1.wait();
+    console.log("Verify");
+    let verified
+    verified = await DocuTrack.verify();
+    
+    console.log("Get Link");
+    let Link
+    Link = await DocuTrack.tokenURI(verified);
+    console.log(Link)
 
   };
   

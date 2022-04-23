@@ -1,10 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-// import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-// import "@openzeppelin/contracts/security/Pausable.sol";
-// import "@openzeppelin/contracts/access/Ownable.sol";
-// import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
@@ -16,45 +12,37 @@ contract Doc is ERC721URIStorage {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
+    mapping(address => user) public users;
 
     constructor() ERC721("Doc", "DUT") {}
 
-    // function _baseURI() internal pure override returns (string memory) {
-    //     return "http://staffmobility.eu/sites/default/files/isewtweetbg.jpg";
-    // }
-
-    // function pause() public onlyOwner {
-    //     _pause();
-    // }
-
-    // function unpause() public onlyOwner {
-    //     _unpause();
-    // }
-
-    // function safeMint(address to) public onlyOwner {
-    //     uint256 tokenId = _tokenIdCounter.current();
-    //     _tokenIdCounter.increment();
-    //     _safeMint(to, tokenId);
-    // }
-
-    // function _beforeTokenTransfer(address from, address to, uint256 tokenId)
-    //     internal
-    //     whenNotPaused
-    //     override
-    // {
-    //     super._beforeTokenTransfer(from, to, tokenId);
-    // }
-
-    function docuMint(address newowner, string memory tokenURI) public returns (uint256)  {
-        _tokenIdCounter.increment();
-
-        uint256 newItemId = _tokenIdCounter.current();
-        _mint(newowner, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-
-        return newItemId;
+    struct user {
+        address curruser;
+        uint256 tokenid;
     }
-    function drop() public {
-            console.log("Test");
+
+    function docuMint(address newowner, string memory tokenURI)
+        public
+        returns (uint256)
+    {
+        if (tx.origin == msg.sender && users[msg.sender].tokenid == 0) {
+            users[msg.sender].curruser = msg.sender;
+            _tokenIdCounter.increment();
+
+            uint256 newItemId = _tokenIdCounter.current();
+            _mint(newowner, newItemId);
+            _setTokenURI(newItemId, tokenURI);
+            users[msg.sender].tokenid = newItemId;
+            console.log(newItemId);
+            return newItemId;
+        } else {
+            console.log(
+                "Can't be added"
+            );
+            return 1;
+        }
+    }
+    function verify() public view returns (uint256){
+        return users[msg.sender].tokenid;
     }
 }
