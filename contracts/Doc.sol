@@ -28,7 +28,7 @@ contract Doc is ERC721URIStorage {
         returns (uint256)
     {
         // console.log(msg.sender);
-        // console.log(users[msg.sender].tokenid);
+        console.log("check ID exist: ", users[newowner].tokenid);
         if (tx.origin == msg.sender && users[newowner].tokenid == 0) {
             _tokenIdCounter.increment();
 
@@ -36,17 +36,20 @@ contract Doc is ERC721URIStorage {
             _mint(newowner, newItemId);
             _setTokenURI(newItemId, tokenURI);
             users[newowner].tokenid = newItemId;
-            console.log(newItemId);
+            console.log("New ID",newItemId);
             return newItemId;
         } else {
             console.log(
-                "Can't be added"
+                "Can't be added 1000"
             );
-            return 1;
+            return 1000;
         }
     }
     function verify() public view returns (uint256){
         return users[msg.sender].tokenid;
+    }
+    function mintVerify(address newowner) public view returns (uint256){
+        return users[newowner].tokenid;
     }
     function entity() public view returns (uint256){
         console.log(users[msg.sender].curruser);

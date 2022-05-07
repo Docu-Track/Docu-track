@@ -21,7 +21,11 @@ module.exports = {
   networks: {
     rinkeby: {
       url: process.env.APIURL,
-      accounts: [process.env.APIKEY]
+      accounts: [process.env.APIKEY],
+    },
+    goerli: {
+      url: process.env.APIURLG,
+      accounts: [process.env.APIKEYG],
     }
   }
 };
