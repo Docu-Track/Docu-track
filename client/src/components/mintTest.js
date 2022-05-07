@@ -1,3 +1,7 @@
+import './App.css';
+import {useState} from 'react';
+// import abi from './abi.js;
+
 const mintFun = () => {
   const [state,setState] = useState('');
   
@@ -13,7 +17,7 @@ const mintFun = () => {
        alert ('Insufficient Fund');
      }
   return (
-    <> 
+    <div> 
       <form onSubmit={mintNFT}>
         <img src='' alt=''>
         < !state 
@@ -21,7 +25,7 @@ const mintFun = () => {
           'You need to mint a NFT': 
           <button type="submit"> Mint your NFT </button>
       <form/>
-    </>
+    <div/>
       
   );
 }

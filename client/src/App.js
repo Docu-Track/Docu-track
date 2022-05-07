@@ -1,7 +1,7 @@
 import ConnectWallet  from './components/ConnectWallet';
-import FileUpload  from './components/FileUpload';
+import MintNFT  from './components/metadata';
 import './App.css';
-import './UI/FileUpload.css'
+// import './UI/FileUpload.css'
 
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
 
       </div>
       <ConnectWallet/>
-      <div className='FileUpload'>
-        <FileUpload/>
+      <div className='MintNFT'>
+        <MintNFT/>
       </div>
     
     </div>
