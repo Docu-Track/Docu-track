@@ -34,7 +34,7 @@ import { useState } from 'react'
 import { create } from 'ipfs-http-client'
 const client = create('https://ipfs.infura.io:5001/api/v0')
 
-function App() {
+function MintNFT() {
   const [fileUrl, updateFileUrl] = useState(``);
   const [smartContractUrl, setSmartContractUrl] = useState(``);
   const [description, setDescription] = useState('First Description');
@@ -76,7 +76,7 @@ function App() {
     // console.log(data)
   }
   return (
-    <div className="App">
+    <div className="MintNFT">
       <h1>IPFS Example</h1>
       <input
         type="file"
@@ -94,4 +94,4 @@ function App() {
     </div>
   );
 }
-export default App
+export default MintNFT;
