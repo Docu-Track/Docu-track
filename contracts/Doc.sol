@@ -14,7 +14,9 @@ contract Doc is ERC721URIStorage {
     Counters.Counter private _tokenIdCounter;
     mapping(address => user) public users;
 
-    constructor() ERC721("Doc", "DUT") {}
+    constructor() ERC721("Doc", "DUT") {
+        users[msg.sender].curruser = msg.sender;
+    }
 
     struct user {
         address curruser;
@@ -25,14 +27,15 @@ contract Doc is ERC721URIStorage {
         public
         returns (uint256)
     {
-        if (tx.origin == msg.sender && users[msg.sender].tokenid == 0) {
-            users[msg.sender].curruser = msg.sender;
+        // console.log(msg.sender);
+        // console.log(users[msg.sender].tokenid);
+        if (tx.origin == msg.sender && users[newowner].tokenid == 0) {
             _tokenIdCounter.increment();
 
             uint256 newItemId = _tokenIdCounter.current();
             _mint(newowner, newItemId);
             _setTokenURI(newItemId, tokenURI);
-            users[msg.sender].tokenid = newItemId;
+            users[newowner].tokenid = newItemId;
             console.log(newItemId);
             return newItemId;
         } else {
@@ -44,5 +47,13 @@ contract Doc is ERC721URIStorage {
     }
     function verify() public view returns (uint256){
         return users[msg.sender].tokenid;
+    }
+    function entity() public view returns (uint256){
+        console.log(users[msg.sender].curruser);
+        if (tx.origin == users[msg.sender].curruser){
+            return 5;
+        }else {
+            return 1337;
+        }
     }
 }

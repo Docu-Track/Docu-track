@@ -1,5 +1,5 @@
 const main = async () => {
-    const [deployer] = await hre.ethers.getSigners();
+    const [deployer,random] = await hre.ethers.getSigners();
     const accountBalance = await deployer.getBalance();
   
     console.log("Deploying contracts with account: ", deployer.address);
@@ -15,9 +15,9 @@ const main = async () => {
     // Mint for user 1
     console.log("Mint for User 1");
     let user1
-    user1 = await DocuTrack.docuMint(deployer.address, "https://bafybeic6goo23dpyefesljkvmhbss4lcum3n5soqddgmyczp66zgxrrbd4.ipfs.infura-ipfs.io/");
+    user1 = await DocuTrack.docuMint("0xd6f68Ec758c80977eb1b0d504455936FaCb4e8d5", "https://ipfs.infura.io/ipfs/Qmdyk19gAEsML3xzrNWGdXcDcRhWpsEqXBnqan7wRgkXRD");
     await user1.wait();
-    // console.log("Forged token :", user1)
+    console.log("Forged token :", user1)
 
     // //Test
     console.log("");
@@ -29,6 +29,13 @@ const main = async () => {
     let Link
     Link = await DocuTrack.tokenURI(verified);
     console.log(Link)
+
+    // //Entity
+    console.log("");
+    console.log("Entity");
+    let verified1
+    verified1 = await DocuTrack.entity();
+    console.log(verified1)
 
   };
   
