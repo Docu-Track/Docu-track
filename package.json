@@ -26,8 +26,7 @@
     "hardhat": "^2.9.3"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^4.5.0",
-    "dotenv": "^16.0.0",
-    "uplink-nodejs": "^1.2.6"
+    "@openzeppelin/contracts": "^4.6.0",
+    "dotenv": "^16.0.0"
   }
 }

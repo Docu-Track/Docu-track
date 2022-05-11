@@ -14,7 +14,7 @@ contract Doc is ERC721URIStorage {
     Counters.Counter private _tokenIdCounter;
     mapping(address => user) public users;
 
-    constructor() ERC721("Doc", "DUT") {
+    constructor() ERC721("Certified Ethical Developers", "CED") {
         users[msg.sender].curruser = msg.sender;
     }
 
