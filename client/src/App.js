@@ -5,8 +5,7 @@ import { create } from 'ipfs-http-client'
 import { ethers } from "ethers";
 import abi from "./Doc.json";
 import Navbar from '../src/components/Navbar'
-import { Container, Button, Divider, Box, Chip, Grid, TextField, Stack, Paper, Grow, Typography, Link, Skeleton, AlertTitle, Backdrop, CircularProgress, Card, CardActions, CardContent, CardMedia } from '@mui/material/';import AddIcon from '@mui/icons-material/Add';
-import SendIcon from '@mui/icons-material/Send';
+import { Container, Button, Divider, Box, Chip, Grid, TextField, Stack, Paper, Grow, Typography, Link, Skeleton, AlertTitle, Backdrop, CircularProgress, Card, CardActions, CardContent, CardMedia } from '@mui/material/';import SendIcon from '@mui/icons-material/Send';
 import { styled } from '@mui/material/styles';
 import Copyright from './components/copyright';
 import date from 'date-and-time';
@@ -423,6 +422,12 @@ function App() {
       </Snackbar>
       <Box mt={8}>
         <Typography gutterbottm fontStyle="italic" variant="h5" color="textSecondary" align="center">
+          {'"Remember to refresh the page after account change."'}
+        </Typography>
+        <Divider textAlign="center" variant="inset">
+          <Chip></Chip>
+        </Divider>
+         <Typography gutterbottm fontStyle="italic" variant="h5" color="textSecondary" align="center">
           {'"Remember to refresh the page after account change."'}
         </Typography>
         <Divider textAlign="center" variant="inset">
