@@ -19,10 +19,10 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    rinkeby: {
-      url: process.env.APIURL,
-      accounts: [process.env.APIKEY],
-    },
+    // rinkeby: {
+    //   url: process.env.APIURL,
+    //   accounts: [process.env.APIKEY],
+    // },
     goerli: {
       url: process.env.APIURLG,
       accounts: [process.env.APIKEYG],
