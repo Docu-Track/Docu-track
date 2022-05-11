@@ -427,12 +427,6 @@ function App() {
         <Divider textAlign="center" variant="inset">
           <Chip></Chip>
         </Divider>
-         <Typography gutterbottm fontStyle="italic" variant="h5" color="textSecondary" align="center">
-          {'"Remember to refresh the page after account change."'}
-        </Typography>
-        <Divider textAlign="center" variant="inset">
-          <Chip></Chip>
-        </Divider>
         <Copyright />
       </Box>
     </Box>
